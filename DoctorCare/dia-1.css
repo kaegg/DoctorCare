@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box; /*começa a contar a partir da borda*/
 }
 
@@ -9,16 +10,29 @@
   --paragraph: #495057;
   --brand-beige: #fffaf1;
   --brand-green-light: #dce9e2;
+  --bg-light: #f7f9f9;
 
   --nav-height: 7.2rem;
 
   font-size: 62.5%; /*1rem = 10px   100% = 16px   62.5% = 10px */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   font-family: 'DM Sans';
   font-size: 1.6rem;
   text-align: center;
+  overflow: overlay; /*nao conta o tamanho do scroll*/
+  background-color: var(--bg-light);
 }
 
 .wrapper {
@@ -27,11 +41,18 @@ body {
   padding-inline: 2.4rem;
 }
 
-/* ==========HEADER========== */
+ul {
+  list-style: none;
+}
 
-header::before {
+section {
+  padding-block: 10rem;
+}
+/* ==========HOME========== */
+
+#home::before {
   content: '';
-  width: 100vw; /*viewport*/
+  width: 100%; /*viewport*/
   height: calc(108rem + var(--nav-height));
   background-color: var(--brand-green-light);
   display: block;
@@ -41,26 +62,24 @@ header::before {
   z-index: -1;
 }
 
-header {
-  padding-right: 2rem;
-  padding-left: 2rem;
-  margin-top: calc(4.1rem + var(--nav-height));
+#home {
+  padding-top: calc(4.1rem + var(--nav-height));
 }
 
-header h4 {
+#home h4 {
   font-size: 1.4rem;
   margin-bottom: 1.6rem;
   color: var(--primary-color);
 }
 
-header h1 {
+#home h1 {
   font-size: 3.4rem;
   color: var(--headline);
   line-height: 130%;
   margin-bottom: 2.4rem;
 }
 
-header p {
+#home p {
   color: var(--paragraph);
   font-size: 1.8rem;
   line-height: 150%;
@@ -68,7 +87,7 @@ header p {
   margin-bottom: 3.2rem;
 }
 
-header button {
+#home button {
   font-size: 1.4rem;
   font-weight: 700;
   color: white;
@@ -87,7 +106,7 @@ header button {
   margin-left: auto;
 }
 
-header img {
+#home img {
   width: 26.4rem;
   display: block;
   margin-inline: auto;
@@ -108,22 +127,24 @@ header img {
   border-radius: 0.6rem;
 }
 
-.info h3 {
+#home .info h3 {
   font-size: 4.8rem;
   color: var(--headline);
   line-height: 130%; /*espaçamento entre as linhas*/
   margin-bottom: 0.4rem;
 }
 
-.info p {
+#home .info p {
   /* font-size: 1.6rem;  n precisa pq no body ja esta em 1.6rem*/
   margin: 0;
   color: var(--primary-color);
   line-height: 150%;
 }
 
-a {
-  color: var(--primary-color);
+.whats {
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
 }
 
 /* ==========NAV========== */
@@ -154,6 +175,153 @@ nav.scroll svg:nth-child(1) path {
   fill: white;
 }
 
-nav.scroll svg:nth-child(2) path {
+nav.scroll button path {
   stroke: white;
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ==========MENU-EXPANDED========== */
+body.menu-expanded {
+  overflow: hidden; /* "vazamento" scroll */
+}
+
+body.menu-expanded > :not(nav) {
+  /* todos de primeiro nivel vao sumir exceto pelo nav */
+  display: none;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu {
+  transform: translateY(100%);
+}
+
+body.menu-expanded .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--primary-color);
+  width: 100vw; /* viewport width*/
+  height: 100vh; /*viewport height*/
+  padding-top: var(--nav-height);
+  transition: transform 300ms;
+  transform: translateY(0%);
+}
+
+body.menu-expanded nav {
+  position: relative;
+}
+
+.menu ul:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+  margin-top: 6rem;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu-button {
+  background: white;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none; /*remove a linha q fica embaixo*/
+  border-radius: 4rem;
+
+  color: var(--primary-color);
+  display: inline-block; /*o block aplica margem, altura, largura...*/
+  padding: 1.6rem 3.2rem;
+
+  margin-top: 4.8rem;
+  margin-bottom: 8rem;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded button {
+  position: relative;
+  z-index: 100;
+}
+
+body.menu-expanded .logo path {
+  fill: white;
+}
+
+body.menu-expanded button path {
+  stroke: white;
+}
+
+/* ==========SERVICES========== */
+
+#services .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+#services header h4 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  line-height: 150%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  width: 37.5rem;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
+}
+
+#services header h2 {
+  font-size: 3rem;
+  line-height: 3.9rem;
+  color: var(--headline);
+  margin-bottom: 6rem;
+  width: 37.5rem;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
+}
+
+.card {
+  padding: 2.4rem;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid var(--brand-green-light);
+  border-radius: 6px;
+  width: 37.5rem;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
+}
+
+.card h3 {
+  margin-block: 1.6rem;
 }
