@@ -11,6 +11,8 @@
   --brand-beige: #fffaf1;
   --brand-green-light: #dce9e2;
   --bg-light: #f7f9f9;
+  --brand-green-hover: #00453a;
+  /* para customizar as cores 55min aula 04 */
 
   --nav-height: 7.2rem;
 
@@ -45,11 +47,45 @@ ul {
   list-style: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 section {
   padding-block: 10rem;
 }
-/* ==========HOME========== */
 
+section header h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: 0.08em;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+
+section header h2 {
+  font-size: 3rem;
+  line-height: 3.9rem;
+  color: var(--headline);
+}
+
+section header h1 {
+  font-size: 3.4rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 2.4rem;
+}
+
+section .content p {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+  color: var(--paragraph);
+}
+
+/* ==========HOME========== */
 #home::before {
   content: '';
   width: 100%; /*viewport*/
@@ -64,19 +100,6 @@ section {
 
 #home {
   padding-top: calc(4.1rem + var(--nav-height));
-}
-
-#home h4 {
-  font-size: 1.4rem;
-  margin-bottom: 1.6rem;
-  color: var(--primary-color);
-}
-
-#home h1 {
-  font-size: 3.4rem;
-  color: var(--headline);
-  line-height: 130%;
-  margin-bottom: 2.4rem;
 }
 
 #home p {
@@ -96,14 +119,19 @@ section {
   border: none;
   border-radius: 4rem;
   margin-bottom: 6rem;
-  height: 5.2rem;
-  width: 26.3rem;
+  padding: 1.6rem 3.2rem; /* primeiro em cima e baixo segundo lados */
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.6rem; /*separação*/
   margin-right: auto;
   margin-left: auto;
+  transition: background 300ms;
+}
+
+#home button:hover {
+  background-color: var(--brand-green-hover);
 }
 
 #home img {
@@ -148,18 +176,17 @@ section {
 }
 
 /* ==========NAV========== */
-
 nav {
   display: flex;
   height: 7.2rem;
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
   /* desloca somente metade do tamanho dele para o negativo*/
+  width: 100vw;
+  z-index: 100;
 }
 
-div.wrapper {
+div#wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -167,10 +194,9 @@ div.wrapper {
 
 nav.scroll {
   background: var(--primary-color);
-  width: 100vw;
 }
 
-nav.scroll svg:nth-child(1) path {
+nav.scroll .logo path {
   /*primeiro svg q encontrar*/
   fill: white;
 }
@@ -192,7 +218,7 @@ body.menu-expanded {
 
 body.menu-expanded > :not(nav) {
   /* todos de primeiro nivel vao sumir exceto pelo nav */
-  display: none;
+  visibility: hidden;
 }
 
 .menu,
@@ -222,10 +248,6 @@ body.menu-expanded .menu {
   padding-top: var(--nav-height);
   transition: transform 300ms;
   transform: translateY(0%);
-}
-
-body.menu-expanded nav {
-  position: relative;
 }
 
 .menu ul:nth-child(1) {
@@ -260,6 +282,12 @@ body.menu-expanded nav {
   margin-bottom: 8rem;
 }
 
+.menu-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transition: background 300ms;
+}
+
 .social-links {
   display: flex;
   align-items: center;
@@ -282,6 +310,12 @@ body.menu-expanded button path {
 }
 
 /* ==========SERVICES========== */
+#services h2 {
+  margin-bottom: 6rem;
+  width: 37.5rem;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
+}
 
 #services .cards {
   display: flex;
@@ -289,29 +323,7 @@ body.menu-expanded button path {
   gap: 3.2rem;
 }
 
-#services header h4 {
-  font-size: 1.4rem;
-  color: var(--primary-color);
-  line-height: 150%;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 1.6rem;
-  width: 37.5rem;
-  margin-inline: auto;
-  padding-inline: 2.4rem;
-}
-
-#services header h2 {
-  font-size: 3rem;
-  line-height: 3.9rem;
-  color: var(--headline);
-  margin-bottom: 6rem;
-  width: 37.5rem;
-  margin-inline: auto;
-  padding-inline: 2.4rem;
-}
-
-.card {
+#services .card {
   padding: 2.4rem;
   text-align: left;
   background: #ffffff;
@@ -322,6 +334,105 @@ body.menu-expanded button path {
   padding-inline: 2.4rem;
 }
 
-.card h3 {
+#services .card h3 {
   margin-block: 1.6rem;
+}
+
+/* ==========ABOUT==========*/
+#about {
+  text-align: left;
+  background-color: var(--brand-beige);
+}
+
+#about header h2 {
+  margin-bottom: 2.4rem;
+}
+
+#about .content p {
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
+}
+
+/* ==========CONTACT==========*/
+#contact {
+  text-align: left;
+  background-color: white;
+}
+
+#contact header {
+  margin-bottom: 3.2rem;
+}
+
+#contact ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+  display: flex;
+  text-align: center;
+  gap: 0.8rem;
+}
+
+#contact a button {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  background-color: var(--primary-color);
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4rem;
+  margin-bottom: 6rem;
+  padding: 1.6rem 3.2rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem; /*separação*/
+  transition: background 300ms;
+}
+
+#contact button:hover {
+  background-color: var(--brand-green-hover);
+}
+
+/* ==========FOOTER==========*/
+footer {
+  background-color: var(--primary-color);
+  padding-block: 6rem; /* em cima e embaixo*/
+  text-align: left;
+  color: white;
+}
+
+footer svg {
+  margin-bottom: 2.4rem;
+}
+
+footer p {
+  color: var(--brand-beige);
+  line-height: 2;
+  margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+  justify-content: flex-start; /* alinhado ao começo */
+}
+
+/* ==========BACK TO TOP==========*/
+#backToTopButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 2.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%);
+  transition: 200ms;
+}
+
+#backToTopButton.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
