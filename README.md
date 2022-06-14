@@ -1,3 +1,2 @@
 # DoctorCare
-Projeto NLW Return Origin da rocketseat
-Projeto visando aprendizado de HTML, CSS e JavaScript
+Projeto NLW Return Origin da rocketseat, visando o aprendizado de HTML, CSS e JavaScript
